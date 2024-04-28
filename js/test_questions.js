@@ -18,11 +18,28 @@ async function test_questions(q){
             const response = await fetch(`https://api.scryfall.com/cards/search?order=cmc&q=${query}`);
             console.log(`https://api.scryfall.com/cards/search?order=cmc&q=${query}`);
             const data = await response.json();
+            let best = calc_best(data); // TDOD: should refactor this
             if (data.total_cards == undefined){ return false} // check if any row/col pairs have NO possible answers
             else{
-                document.getElementById(elems[x + (y*3)]).innerText = `${data.total_cards} card(s)`;
+                document.getElementById(elems[x + (y*3)]).innerHTML = `${data.total_cards} card(s)<br><button>Select</button>`;
             }
         }
     }
     return true // if nothing has returned false by now, the board is valid.
+}
+
+function calc_best(data){
+    let best_price = 0;
+    let name = "";
+    if (data.data != null){
+        for (const [key, value] of Object.entries(data.data)) {
+            if (value.prices.usd > best_price){
+                best_price = value.prices.usd;
+                name = value.name;
+            }
+            
+        }
+    }
+    console.log(name, best_price);
+    
 }
