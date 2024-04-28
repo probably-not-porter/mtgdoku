@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MTG Sudoku</title>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div id="header">
+            <h2 onclick="window.location = window.location.href.split('?')[0]">MTGdoku</h3>
+            <button onclick="load_random()">Load Random</button>
+            <button onclick="load_from_paste()">Load from ID</button>
+            <button onclick="load_daily()">Load Daily Puzzle</button>
+        </div>
+        <div id='puzzle' class="grid-container">
+            <div class="grid-item"></div>
+            <div id='p1' class="grid-p grid-item">p1</div>
+            <div id='p2' class="grid-p grid-item">p2</div>  
+            <div id='p3' class="grid-p grid-item">p3</div>
+            <div id='p4' class="grid-p grid-item">p4</div>
+            <div id='a1' class="grid-a grid-item">a1</div>  
+            <div id='a2' class="grid-a grid-item">a2</div>
+            <div id='a3' class="grid-a grid-item">a3</div>
+            <div id='p5' class="grid-p grid-item">p5</div>  
+            <div id='a4' class="grid-a grid-item">a4</div>
+            <div id='a5' class="grid-a grid-item">a5</div>  
+            <div id='a6' class="grid-a grid-item">a6</div>
+            <div id='p6' class="grid-p grid-item">p6</div>
+            <div id='a7' class="grid-a grid-item">a7</div>
+            <div id='a8' class="grid-a grid-item">a8</div>
+            <div id='a9' class="grid-a grid-item">a9</div>
+        </div>
+
+        <script src="js/create_questions.js"></script>
+        <script src="js/test_questions.js"></script>
+        <script src="js/loaders.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
