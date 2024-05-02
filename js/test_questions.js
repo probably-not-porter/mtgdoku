@@ -21,7 +21,10 @@ async function test_questions(q){
             let best = calc_best(data); // TDOD: should refactor this
             if (data.total_cards == undefined){ return false} // check if any row/col pairs have NO possible answers
             else{
-                document.getElementById(elems[x + (y*3)]).innerHTML = `${data.total_cards} card(s)<br><button>Select</button>`;
+                document.getElementById(elems[x + (y*3)]).innerHTML = `
+                    ${data.total_cards} card(s)<br>
+                    <button onclick='select("${q1}","${q2}")'>Select</button>
+                `;
             }
         }
     }
