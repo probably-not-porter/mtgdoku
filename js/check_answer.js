@@ -1,6 +1,7 @@
 async function check_answer(){
+    document.getElementById("searchbar").value = "";
     document.getElementById("card_selector").style.display = "none";
-    TRIES = TRIES - 1;
+    TRIES = TRIES + 1;
     document.getElementById("tries").innerText = `Guesses: ${TRIES}`
 
     var ans = document.getElementById("searchbar").value;
