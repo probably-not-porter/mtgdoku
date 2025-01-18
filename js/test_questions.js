@@ -21,7 +21,7 @@ async function test_questions(q){
             if (data.total_cards == undefined){ return false} // check if any row/col pairs have NO possible answers
             else{
                 document.getElementById(elems[x + (y*3)]).innerHTML = `
-                    ${data.total_cards} card(s)<br>
+                    (${data.total_cards})<br>
                     <button onclick='select("${q1}","${q2}",${x},${y})'>Select</button>
                 `;
             }

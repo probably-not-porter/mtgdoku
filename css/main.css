@@ -1,5 +1,18 @@
+@font-face {
+    font-family: 'FFVII';
+    src: url('../fonts/Final_Fantasy_VII.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/Final_Fantasy_VII.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/Final_Fantasy_VII.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/Final_Fantasy_VII.ttf')  format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/Final_Fantasy_VII.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
 html{
     background-color: #333;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 button{
     color: black;
@@ -7,7 +20,7 @@ button{
 }
 
 *{
-    font-family: monospace;
+    font-family: FFVII;
     text-align: center;
     color: white;
 }
@@ -38,7 +51,7 @@ button{
     padding: 10%;
 }
 .grid-a{
-    font-size: 12px;
+    font-size: 20px;
 }
 /* #p2, #p3, #a2, #a3, #a5, #a6, #a8, #a9{
     border-left: 2px solid black;
@@ -60,7 +73,8 @@ button{
 }
 h2{
     margin: 0px;
-    padding: 10px;
+    padding: 0 0;
+    font-family: monospace;
 }
 #card_selector{
     position: absolute;
