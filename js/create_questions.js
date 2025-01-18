@@ -13,8 +13,12 @@ let type2 = colors.concat(colors,cmc);
 
 
 // ================================================ //
+function normalize_seed(seed) {
+    return seed % 1_000_000_000_000; // Keep the seed within a 12-digit range
+}
 
 function create_questions(seed){
+    seed = normalize_seed(seed);
     // Create first filter row
     let item1 = type1[Math.floor(pseudo_random(seed)*type1.length)];
     let item2 = type1[Math.floor(pseudo_random(seed+1)*type1.length)];
