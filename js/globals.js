@@ -1,5 +1,7 @@
 var TRIES = 0
-document.getElementById("tries").innerText = `Guesses: ${TRIES}`
+var BOARD = null;
+
+
 
 // Might not need this
 CURRENT_DATA = {

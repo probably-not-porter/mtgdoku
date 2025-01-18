@@ -20,9 +20,13 @@ function isNumeric(value) {
     return /^-?\d+$/.test(value);
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('load', async function() {
     if (window.location.href.split("?").length != 1){
+        let boardstate = await load_board_state();
+        console.log(boardstate)
+        document.getElementById("tries").innerText = `Guesses: ${boardstate.tries}`
         document.getElementById("loader").style.display = "block";
-        load_board();
+        await load_board();
+        await refill_board_state();
     }
 })

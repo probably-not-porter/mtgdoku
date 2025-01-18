@@ -1,28 +1,39 @@
 async function check_answer(){
-    document.getElementById("searchbar").value = "";
-    document.getElementById("card_selector").style.display = "none";
-    TRIES = TRIES + 1;
-    document.getElementById("tries").innerText = `Guesses: ${TRIES}`
-
+    // retrieve data from searchbar
     var ans = document.getElementById("searchbar").value;
     var x = document.getElementById("searchbar").dataset.x;
     var y = document.getElementById("searchbar").dataset.y;
     var q1 = document.getElementById("searchbar").dataset.q1;
     var q2 = document.getElementById("searchbar").dataset.q2;
 
+    // update elements
+    document.getElementById("card_selector").style.display = "none";
+    document.getElementById("searchbar").value = "";
+
+    // check for no answer, does not spend a guess
     if (ans == ""){
         fail(x,y);
         return;
     }
+    
+
+    // Update boardstate with new guess
+    let boardstate = await load_board_state();
+    boardstate.tries = boardstate.tries + 1;
+    document.getElementById("tries").innerText = `Guesses: ${boardstate.tries}`
+    await set_board_state(boardstate);
+
+    // fetch card data
     const response = await fetch(`https://api.scryfall.com/cards/named?exact="${ans}"`);
     const data = await response.json();
     
+    // check answer
     if (data.code == "not_found"){
         fail(x,y);
         return;
     }
     if (check_criteria(data,q1) && check_criteria(data,q2)){
-        success(x,y,data.name,data.image_uris.art_crop);
+        success(x,y,data);
         return;
     }
     fail(x,y);
@@ -56,9 +67,12 @@ function fail(x,y){
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).offsetWidth;
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).classList.add("incorrect");
 }
-function success(x,y,name,img){
+async function success(x,y,data){
     console.log("CORRECT!!!");
+    let boardstate = await load_board_state();
+    boardstate.answer_data[y][x] = data;
+    await set_board_state(boardstate);
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).classList.add("correct");
-    document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).innerHTML = name;
-    document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).style.backgroundImage = `url("${img}")`;
+    document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).innerHTML = data.name;
+    document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).style.backgroundImage = `url("${data.image_uris.art_crop}")`;
 }
