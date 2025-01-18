@@ -3,29 +3,28 @@ async function check_answer(){
     TRIES = TRIES - 1;
     document.getElementById("tries").innerText = `Guesses: ${TRIES}`
 
-    // hide the answer box
     var ans = document.getElementById("searchbar").value;
     var x = document.getElementById("searchbar").dataset.x;
     var y = document.getElementById("searchbar").dataset.y;
     var q1 = document.getElementById("searchbar").dataset.q1;
     var q2 = document.getElementById("searchbar").dataset.q2;
-    console.log(ans, x,y,q1,q2);
+
     if (ans == ""){
-        fail(x,y,ans);
+        fail(x,y);
         return;
     }
     const response = await fetch(`https://api.scryfall.com/cards/named?exact="${ans}"`);
     const data = await response.json();
     
     if (data.code == "not_found"){
-        fail(x,y,ans);
+        fail(x,y);
         return;
     }
     if (check_criteria(data,q1) && check_criteria(data,q2)){
-        success(x,y,ans,data.image_uris.art_crop);
+        success(x,y,data.name,data.image_uris.art_crop);
         return;
     }
-    fail(x,y,ans);
+    fail(x,y);
     
 }
 
@@ -49,16 +48,16 @@ function check_criteria(data,q){
     return false
 }
 
-function fail(x,y,ans){
+function fail(x,y){
     console.log("INCORRECT!");
     console.log(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`);
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).classList.remove("incorrect");
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).offsetWidth;
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).classList.add("incorrect");
 }
-function success(x,y,ans,img){
+function success(x,y,name,img){
     console.log("CORRECT!!!");
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).classList.add("correct");
-    document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).innerHTML = ans;
+    document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).innerHTML = name;
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).style.backgroundImage = `url("${img}")`;
 }
