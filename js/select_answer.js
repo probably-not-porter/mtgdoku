@@ -1,7 +1,11 @@
-let selector_1 = null;
-let selector_2 = null;
 
-function select(q1, q2){
+function select(q1, q2, x, y){
+    document.getElementById("card_selector").style.display = "block";
+    document.getElementById("searchbar").dataset.x = x;
+    document.getElementById("searchbar").dataset.y = y;
+    document.getElementById("searchbar").dataset.q1 = q1;
+    document.getElementById("searchbar").dataset.q2 = q2;
+
     let hint = "(";
     if (q1.length == 1){ hint += `${parseColor(q1)}` }                  // header row if COLOR
     else if (q1.length < 4){ hint += `${q1.replace("c","")}cmc` }      // header row if CMC
@@ -30,6 +34,3 @@ function parseColor(n){
     if (n.toLowerCase() == "g") { return "Green"}
 }
 
-function searchcard(v){
-    console.log(v);
-}

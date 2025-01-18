@@ -1,43 +1,51 @@
+html{
+    background-color: #333;
+}
+button{
+    color: black;
+
+}
+
 *{
     font-family: monospace;
     text-align: center;
+    color: white;
 }
 .grid-container {
+    margin: 0 auto;
     display: none;
     grid-template-columns: auto auto auto auto;
     padding: 4px;
     width: 40vw;
     height: 40vw;
-    min-width: 300px;
-    min-height: 300px;
-    max-width: 600px;
-    max-height: 600px;
+    min-width: 400px;
+    min-height: 400px;
 }
 .grid-item {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    font-size: 30px;
+    font-size: 10px;
     text-align: center;
     width: 10vw;
     height: 10vw;
-    min-width: 75px;
-    min-height: 75px;
-    max-width: 150px;
-    max-height: 150px;
+    min-width: 100px;
+    min-height: 100px;
+    background-size:     cover; 
+    background-repeat:   no-repeat;
+    background-position: center center;
 }
 .grid-item .icon{
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
+    padding: 10%;
 }
 .grid-a{
-    font-size: 15px;
+    font-size: 12px;
 }
-#p2, #p3, #a2, #a3, #a5, #a6, #a8, #a9{
+/* #p2, #p3, #a2, #a3, #a5, #a6, #a8, #a9{
     border-left: 2px solid black;
 }
 #p5, #p6, #a4, #a5, #a6, #a7, #a8, #a9{
     border-top: 2px solid black;
-}
+} */
 
 
 
@@ -59,9 +67,11 @@ h2{
     width: 300px;
     background: gray;
     padding: 10px;
+    display: none;
 }
 #card_selector input{
     width: 80%;
+    color: black;
 }
 .icon{
     width: 32px;
@@ -73,4 +83,32 @@ h2{
     width: 70%;
     height: 100%;
     z-index: 0;
+}
+
+@keyframes fadeOutIncorrect {
+    0% {
+        box-shadow: inset 0 0 10px 5px rgb(255, 0, 0);
+    }
+    100% {
+        box-shadow: inset 0 0 10px 0px rgba(0, 255, 0, 0);
+    }
+}
+
+.incorrect {
+    position: relative; /* Ensure this works well with the box-shadow */
+    animation: fadeOutIncorrect 3s forwards;
+}
+
+@keyframes fadeOutCorrect {
+    0% {
+        box-shadow: inset 0 0 10px 5px green;
+    }
+    100% {
+        box-shadow: inset 0 0 10px 0px rgba(0, 255, 0, 0);
+    }
+}
+
+.correct {
+    position: relative; /* Ensure this works well with the box-shadow */
+    animation: fadeOutCorrect 3s forwards;
 }

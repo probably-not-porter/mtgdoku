@@ -12,6 +12,10 @@
             <button onclick="load_random()">Load Random</button>
             <button onclick="load_from_paste()">Load from ID</button>
             <button onclick="load_daily()">Load Daily Puzzle</button>
+            <br>
+        </div>
+        <div>
+            <span id="tries">Tries remaining: 3</span>
         </div>
         <div id="card_selector">
             <img class="icon" id="card_selector_img_1">
@@ -19,7 +23,11 @@
             <img class="icon" id="card_selector_img_2">
             <p id="card_selector_hint"></p>
             <br>
-            <input placeholder="Search for a card..." type="text"></input>
+            <input oninput='auto(this.value)' list="suggestions" id='searchbar' placeholder="Search for a card..." type="text"></input>
+            <datalist id="suggestions">
+                
+            </datalist>
+            <button onclick="check_answer()">Check Answer</button>
         </div>
         <div id='puzzle' class="grid-container">
             <div class="grid-item"></div>
@@ -39,7 +47,10 @@
             <div id='a8' class="grid-a grid-item">loading...</div>
             <div id='a9' class="grid-a grid-item">loading...</div>
         </div>
+
         <script src="js/globals.js"></script>
+        <script src="js/check_answer.js"></script>
+        <script src="js/auto.js"></script>
         <script src="js/select_answer.js"></script>
         <script src="js/create_questions.js"></script>
         <script src="js/test_questions.js"></script>
