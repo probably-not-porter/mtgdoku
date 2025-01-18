@@ -27,9 +27,9 @@ function create_questions(seed){
         item3 = type1[Math.floor(pseudo_random(seed+2)*type1.length)];
         seed += 1;
     }
-    document.getElementById("p1").innerHTML = `<img src="icons/${item1}.svg"/>`;
-    document.getElementById("p2").innerHTML = `<img src="icons/${item2}.svg"/>`;
-    document.getElementById("p3").innerHTML = `<img src="icons/${item3}.svg"/>`;
+    document.getElementById("p1").innerHTML = `<img class='icon' src="icons/${item1}.svg"/>`;
+    document.getElementById("p2").innerHTML = `<img class='icon' src="icons/${item2}.svg"/>`;
+    document.getElementById("p3").innerHTML = `<img class='icon' src="icons/${item3}.svg"/>`;
     
     // create second filter row
     let item4 = type2[Math.floor(pseudo_random(seed+2)*type2.length)];
@@ -43,9 +43,9 @@ function create_questions(seed){
         item6 = type2[Math.floor(pseudo_random(seed+4)*type2.length)];
         seed += 1;
     }
-    document.getElementById("p4").innerHTML = `<img src="icons/${item4}.svg"/>`;
-    document.getElementById("p5").innerHTML = `<img src="icons/${item5}.svg"/>`;
-    document.getElementById("p6").innerHTML = `<img src="icons/${item6}.svg"/>`;
+    document.getElementById("p4").innerHTML = `<img class='icon' src="icons/${item4}.svg"/>`;
+    document.getElementById("p5").innerHTML = `<img class='icon' src="icons/${item5}.svg"/>`;
+    document.getElementById("p6").innerHTML = `<img class='icon' src="icons/${item6}.svg"/>`;
 
     return [
         [item1, item2, item3],
