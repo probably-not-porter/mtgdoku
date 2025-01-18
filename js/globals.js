@@ -1,4 +1,4 @@
-var TRIES = 9
+var TRIES = 0
 document.getElementById("tries").innerText = `Guesses: ${TRIES}`
 
 // Might not need this

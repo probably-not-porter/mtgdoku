@@ -1,5 +1,4 @@
 async function load_board(){
-    document.getElementById("puzzle").style.display = "grid"
     var question_key = null;
     let seed = parseInt(window.location.href.split("?").pop());
 
@@ -14,6 +13,7 @@ async function load_board(){
         seed += 1;
     }
     document.getElementById("puzzle").style.display = 'grid';
+    document.getElementById("loader").style.display = "none";
 }
 
 function isNumeric(value) {
@@ -22,6 +22,7 @@ function isNumeric(value) {
 
 window.addEventListener('load', function() {
     if (window.location.href.split("?").length != 1){
+        document.getElementById("loader").style.display = "block";
         load_board();
     }
 })
