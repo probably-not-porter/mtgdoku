@@ -10,9 +10,9 @@ function select(q1, q2, x, y){
     if (q1.length == 1){ hint += `${parseColor(q1)}` }                  // header row if COLOR
     else if (q1.length < 4){ hint += `${q1.replace("c","")}cmc` }      // header row if CMC
     else { hint += `${q1.toLowerCase()}` }                              // header row if TYPE
-    document.getElementById("card_selector_img_1").src = `icons/${q1}.svg`;
+    document.getElementById("card_selector_img_1").src = `img/${q1}.png`;
     if (q1 != q2){
-        document.getElementById("card_selector_img_2").src = `icons/${q2}.svg`;
+        document.getElementById("card_selector_img_2").src = `img/${q2}.png`;
         document.getElementById("card_selector_img_2").style.display = "inline-block";
         document.getElementById("card_selector_plus").style.display = "inline-block";
         hint += " and ";

@@ -44,11 +44,13 @@ button{
     background-size:     cover; 
     background-repeat:   no-repeat;
     background-position: center center;
+
 }
 .grid-item .icon{
-    width: 80%;
-    height: 80%;
-    padding: 10%;
+    image-rendering: pixelated;
+    width: 90%;
+    height: 90%;
+    padding: 5%;
 }
 .grid-a{
     font-size: 14px;
@@ -92,6 +94,7 @@ h2{
 .icon{
     width: 32px;
     height: 32px;
+    image-rendering: pixelated;
 }
 .card-img{
     float:left;
