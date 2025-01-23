@@ -20,7 +20,6 @@ async function check_answer(){
     // Update boardstate with new guess
     let boardstate = await load_board_state();
     boardstate.tries = boardstate.tries + 1;
-    document.getElementById("tries").innerText = `Guesses: ${boardstate.tries}`
     await set_board_state(boardstate);
 
     // fetch card data
@@ -30,14 +29,13 @@ async function check_answer(){
     // check answer
     if (data.code == "not_found"){
         fail(x,y);
-        return;
+        return
     }
     if (check_criteria(data,q1) && check_criteria(data,q2)){
         success(x,y,data);
-        return;
+        return
     }
     fail(x,y);
-    
 }
 
 function check_criteria(data,q){
@@ -66,13 +64,15 @@ function fail(x,y){
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).classList.remove("incorrect");
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).offsetWidth;
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).classList.add("incorrect");
+    calc_stat(boardstate);
 }
 async function success(x,y,data){
     console.log("CORRECT!!!");
     let boardstate = await load_board_state();
     boardstate.answer_data[y][x] = data;
     await set_board_state(boardstate);
+    calc_stat(boardstate);
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).classList.add("correct");
-    document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).innerHTML = data.name;
+    document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).innerHTML = `<span class='cardname'>${data.name}</span>`;
     document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).style.backgroundImage = `url("${data.image_uris.art_crop}")`;
 }

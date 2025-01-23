@@ -43,7 +43,7 @@ async function refill_board_state(){
             if (boardstate.answer_data[y][x] != null){
                 let data = boardstate.answer_data[y][x]
                 document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).classList.add("correct");
-                document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).innerHTML = data.name;
+                document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).innerHTML = `<span class='cardname'>${data.name}</span>`;
                 document.getElementById(`a${ parseInt(x) + ( parseInt(y)*3 ) + 1 }`).style.backgroundImage = `url("${data.image_uris.art_crop}")`;
             }
         }
