@@ -1,6 +1,7 @@
 const elems = ["a1","a2","a3","a4","a5","a6","a7","a8","a9"]
 
 async function test_questions(q){
+    let loaded = 0;
     if (q == null){ return false } // make sure that there are row/col selections (not null)
     for (x = 0; x < 3; x++){            // item in header ROW
         let q1 = q[0][x];               // header row item X
@@ -20,6 +21,8 @@ async function test_questions(q){
             //let best = calc_best(data); // TDOD: should refactor this
             if (data.total_cards == undefined){ return false} // check if any row/col pairs have NO possible answers
             else{
+                loaded += 1;
+                document.getElementById('loader').innerHTML = `Checking puzzle (${(loaded / 9 * 100).toFixed(0)}%)`;
                 document.getElementById(elems[x + (y*3)]).innerHTML = `
                     (${data.total_cards})<br>
                     <button onclick='select("${q1}","${q2}",${x},${y})'>Select</button>

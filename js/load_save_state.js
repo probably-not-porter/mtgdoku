@@ -37,7 +37,7 @@ async function set_board_state(val){
 }
 async function refill_board_state(){
     let boardstate = await load_board_state();
-
+    calc_stat(boardstate);
     for (x = 0; x < 3; x++){
         for (y = 0; y < 3; y++){
             if (boardstate.answer_data[y][x] != null){
