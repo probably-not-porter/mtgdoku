@@ -28,5 +28,34 @@ window.addEventListener('load', async function() {
         document.getElementById("loader").style.display = "block";
         await load_board();
         await refill_board_state();
+    }else{
+        // home
+        this.document.getElementById("list").style.display = "block";
+        this.document.getElementById("list").innerHTML = "";
+        for (const [key, value] of Object.entries(this.localStorage)){
+            if (isJsonString(value)){
+                let data = JSON.parse(value);
+                let complete = 0;
+                for (x = 0; x < 3; x++) {
+                    for (y = 0;y < 3; y++){
+                        if (data.answer_data[y][x] != null){
+                            complete += 1;
+                        }
+                    }
+                }
+                if (complete > 0){
+                    this.document.getElementById("list").innerHTML += `<span onclick='load_from_seed(${key})' class='list-color-${complete}'>Puzzle #${key} - ${complete}/9</span><br>`;
+                }
+            }
+        }
     }
 })
+
+function isJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}

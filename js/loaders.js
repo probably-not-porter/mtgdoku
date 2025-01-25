@@ -12,3 +12,6 @@ function load_from_paste(){
     }
     
 }
+function load_from_seed(seed){
+    window.location = window.location.href.split("?")[0] + "?" + seed;
+}
