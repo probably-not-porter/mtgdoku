@@ -1,0 +1,11 @@
+#stats{
+    display: none;
+}
+.format{
+    display: none;
+    padding: 2px;
+    margin: 1px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid white;
+    border-radius: 3px;
+}

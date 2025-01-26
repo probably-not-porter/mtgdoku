@@ -1,0 +1,41 @@
+#list{
+    display: none;
+    line-height: 2;
+}
+#list span{
+    cursor: pointer;
+    font-size: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2px;
+    margin: 3px;
+}
+#list span:hover{
+    text-decoration: underline;
+}
+.list-color-1{
+    color: #cb6e69;
+}
+.list-color-2{
+    color: #cb8769;
+}
+.list-color-3{
+    color: #cb9a69;
+}   
+.list-color-4{
+    color: #cbb469;
+}
+.list-color-5{
+    color: #cbc169;
+}
+.list-color-6{
+    color: #aacb69;
+}
+.list-color-7{
+    color: #99cb69;
+}
+.list-color-8{
+    color: #8fcb69;
+}
+.list-color-9{
+    color: #69cb6d;
+}

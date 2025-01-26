@@ -48,5 +48,6 @@ async function refill_board_state(){
             }
         }
     }
+    document.getElementById("stats").style.display = "block";
 
 }
