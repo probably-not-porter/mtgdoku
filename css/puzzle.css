@@ -31,18 +31,14 @@
     display: none;
     grid-template-columns: auto auto auto auto;
     padding: 4px;
-    width: 40vw;
-    height: 40vw;
-    min-width: 400px;
-    min-height: 400px;
+    width: 80vmin;
+    height: 80vmin;
 }
 .grid-item {
     font-size: 10px;
     text-align: center;
-    width: 10vw;
-    height: 10vw;
-    min-width: 100px;
-    min-height: 100px;
+    width: 20vmin;
+    height: 20vmin;
     background-size:     cover; 
     background-repeat:   no-repeat;
     background-position: center center;
