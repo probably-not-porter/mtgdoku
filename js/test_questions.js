@@ -23,9 +23,9 @@ async function test_questions(q){
             else{
                 loaded += 1;
                 document.getElementById('loader').innerHTML = `Checking puzzle (${(loaded / 9 * 100).toFixed(0)}%)`;
-                document.getElementById(elems[x + (y*3)]).innerHTML = `
-                    (${data.total_cards})<br>
-                    <button onclick='select("${q1}","${q2}",${x},${y})'>Select</button>
+                document.getElementById(elems[x + (y*3)]).innerHTML = `<br>
+                    ${data.total_cards}<br><br>
+                    <button onclick='select("${q1}","${q2}",${x},${y})'>Answer</button>
                 `;
             }
         }

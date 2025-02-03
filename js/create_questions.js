@@ -10,7 +10,100 @@ const types = ["Land", "Creature", "Artifact", "Enchantment", "Planeswalker", "I
 // potential combinations for requirements on the header row/col
 let type1 = colors.concat(colors,types,types);
 let type2 = colors.concat(colors,cmc);
-
+let question_bank = {
+    c0: {
+        img: "img/c0.png",
+        tooltip: "Any card with a CMC of 0"
+    },
+    c1: {
+        img: "img/c1.png",
+        tooltip: "Any card with a CMC of 1"
+    },
+    c2: {
+        img: "img/c2.png",
+        tooltip: "Any card with a CMC of 2"
+    },
+    c3: {
+        img: "img/c3.png",
+        tooltip: "Any card with a CMC of 3"
+    },
+    c4: {
+        img: "img/c4.png",
+        tooltip: "Any card with a CMC of 4"
+    },
+    c5: {
+        img: "img/c5.png",
+        tooltip: "Any card with a CMC of 5"
+    },
+    c6: {
+        img: "img/c6.png",
+        tooltip: "Any card with a CMC of 6"
+    },
+    c7: {
+        img: "img/c7.png",
+        tooltip: "Any card with a CMC of 7"
+    },
+    c8: {
+        img: "img/c8.png",
+        tooltip: "Any card with a CMC of 8"
+    },
+    c9: {
+        img: "img/c9.png",
+        tooltip: "Any card with a CMC of 9"
+    },
+    c10: {
+        img: "img/c10.png",
+        tooltip: "Any card with a CMC of 10"
+    },
+    Creature: {
+        img: "img/Creature.png",
+        tooltip: "Any card that includes the Creature type"
+    },
+    Artifact: {
+        img: "img/Artifact.png",
+        tooltip: "Any card that includes the Artifact type"
+    },
+    Land: {
+        img: "img/Land.png",
+        tooltip: "Any card that includes the Land type"
+    },
+    Instant: {
+        img: "img/Instant.png",
+        tooltip: "Any card that includes the Instant type"
+    },
+    Sorcery: {
+        img: "img/Sorcery.png",
+        tooltip: "Any card that includes the Sorcery type"
+    },
+    Enchantment: {
+        img: "img/Enchantment.png",
+        tooltip: "Any card that includes the Enchantment type"
+    },
+    Planeswalker: {
+        img: "img/Planeswalker.png",
+        tooltip: "Any card that includes the Planeswalker type"
+    },
+    W: {
+        img: "img/W.png",
+        tooltip: "Any card that has a color identity including White"
+    },
+    U: {
+        img: "img/U.png",
+        tooltip: "Any card that has a color identity including Blue"
+    },
+    B: {
+        img: "img/B.png",
+        tooltip: "Any card that has a color identity including Black"
+    },
+    R: {
+        img: "img/R.png",
+        tooltip: "Any card that has a color identity including Red"
+    },
+    G: {
+        img: "img/G.png",
+        tooltip: "Any card that has a color identity including Green"
+    }
+}
 
 // ================================================ //
 function normalize_seed(seed) {
@@ -31,9 +124,10 @@ function create_questions(seed){
         item3 = type1[Math.floor(pseudo_random(seed+2)*type1.length)];
         seed += 1;
     }
-    document.getElementById("p1").innerHTML = `<img class='icon' src="img/${item1}.png"/>`;
-    document.getElementById("p2").innerHTML = `<img class='icon' src="img/${item2}.png"/>`;
-    document.getElementById("p3").innerHTML = `<img class='icon' src="img/${item3}.png"/>`;
+    
+    document.getElementById("p1").innerHTML = `<img class='icon' title="${question_bank[item1]["tooltip"]}" alt="${question_bank[item1]["tooltip"]}" src="${question_bank[item1]["img"]}"/>`;
+    document.getElementById("p2").innerHTML = `<img class='icon' title="${question_bank[item2]["tooltip"]}" alt="${question_bank[item2]["tooltip"]}" src="${question_bank[item2]["img"]}"/>`;
+    document.getElementById("p3").innerHTML = `<img class='icon' title="${question_bank[item3]["tooltip"]}" alt="${question_bank[item3]["tooltip"]}" src="${question_bank[item3]["img"]}"/>`;
     
     // create second filter row
     let item4 = type2[Math.floor(pseudo_random(seed+2)*type2.length)];
@@ -47,9 +141,9 @@ function create_questions(seed){
         item6 = type2[Math.floor(pseudo_random(seed+4)*type2.length)];
         seed += 1;
     }
-    document.getElementById("p4").innerHTML = `<img class='icon' src="img/${item4}.png"/>`;
-    document.getElementById("p5").innerHTML = `<img class='icon' src="img/${item5}.png"/>`;
-    document.getElementById("p6").innerHTML = `<img class='icon' src="img/${item6}.png"/>`;
+    document.getElementById("p4").innerHTML = `<img class='icon' title="${question_bank[item4]["tooltip"]}" alt="${question_bank[item4]["tooltip"]}" src="${question_bank[item4]["img"]}"/>`;
+    document.getElementById("p5").innerHTML = `<img class='icon' title="${question_bank[item5]["tooltip"]}" alt="${question_bank[item5]["tooltip"]}" src="${question_bank[item5]["img"]}"/>`;
+    document.getElementById("p6").innerHTML = `<img class='icon' title="${question_bank[item6]["tooltip"]}" alt="${question_bank[item6]["tooltip"]}" src="${question_bank[item6]["img"]}"/>`;
 
     return [
         [item1, item2, item3],
