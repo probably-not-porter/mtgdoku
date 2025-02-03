@@ -3,11 +3,17 @@
     top: 100px;
     right: 10px;
     width: 300px;
-    background: gray;
+    background: black;
+    border: 1px solid white;
     padding: 10px;
     display: none;
 }
 #card_selector input{
     width: 80%;
     color: black;
+}
+#close_card_selector{
+    position:absolute;
+    top: 0px;
+    left: 0px;
 }

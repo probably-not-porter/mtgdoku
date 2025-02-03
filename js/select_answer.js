@@ -34,3 +34,7 @@ function parseColor(n){
     if (n.toLowerCase() == "g") { return "Green"}
 }
 
+function close_popup(){
+    document.getElementById("card_selector").style.display = "none";
+}
+
