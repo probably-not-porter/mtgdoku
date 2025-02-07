@@ -1,4 +1,4 @@
-function calc_stat(boardstate){
+function calc_stat(boardstate) {
     let recrank = 0;
     let formats = {
         standard: true,
@@ -22,29 +22,42 @@ function calc_stat(boardstate){
         duel: true,
         oldschool: true,
         premodern: true,
-        predh: true
-    }
+        predh: true,
+    };
+    let correct_tries = 0;
+    let edhrec_string = "";
+    let formats_string = "Legal in: ";
     for (x = 0; x < 3; x++) {
-        for (y = 0;y < 3; y++){
-            if (boardstate.answer_data[y][x] != null){
+        for (y = 0; y < 3; y++) {
+            if (boardstate.answer_data[y][x] != null) {
+                correct_tries += 1;
                 recrank += boardstate.answer_data[y][x].edhrec_rank;
-                for (const [key, value] of Object.entries(boardstate.answer_data[y][x].legalities)) {
-                    if (value != "legal"){
+                edhrec_string += `${boardstate.answer_data[y][x].name}: ${boardstate.answer_data[y][x].edhrec_rank}, `;
+                for (const [key, value] of Object.entries(
+                    boardstate.answer_data[y][x].legalities,
+                )) {
+                    if (value != "legal") {
                         formats[key] = false;
                     }
                 }
-            }   
+            }
         }
     }
-    document.getElementById('tries').innerText = `Guesses: ${boardstate.tries}`;
-    document.getElementById('edhrank').innerText = `EDHRec Sum: ${recrank}`;
+    document.getElementById("tries").innerText = `Guesses: ${boardstate.tries}`;
+    console.log(
+        `${correct_tries} correct guesses, ${boardstate.tries - correct_tries} incorrect guesses`,
+    );
+    document.getElementById("edhrank").innerText = `EDHRec Sum: ${recrank}`;
+    console.log(edhrec_string);
     let formatelem = ``;
     let numformats = 0;
-    for (const [key, value] of Object.entries(formats)){
-        if (value == true){
+    for (const [key, value] of Object.entries(formats)) {
+        if (value == true) {
             numformats += 1;
-            formatelem += `<span class='format'>${key}</span>`
+            formats_string += `${key}, `;
         }
     }
-    document.getElementById('formats').innerHTML = `Legal Formats: ${numformats}/${Object.keys(formats).length}`;
+    document.getElementById("formats").innerHTML =
+        `Legal Formats: ${numformats}/${Object.keys(formats).length}`;
+    console.log(formats_string);
 }
