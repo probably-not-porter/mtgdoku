@@ -26,7 +26,7 @@ function calc_stat(boardstate) {
     };
     let correct_tries = 0;
     let edhrec_string = "";
-    let formats_string = "Legal in: ";
+    let formats_string = "";
     for (x = 0; x < 3; x++) {
         for (y = 0; y < 3; y++) {
             if (boardstate.answer_data[y][x] != null) {
@@ -44,11 +44,15 @@ function calc_stat(boardstate) {
         }
     }
     document.getElementById("tries").innerText = `Guesses: ${boardstate.tries}`;
-    console.log(
-        `${correct_tries} correct guesses, ${boardstate.tries - correct_tries} incorrect guesses`,
-    );
+    let guess_string = `${correct_tries} correct guesses
+      ${boardstate.tries - correct_tries} incorrect guesses`;
+    document.getElementById("tries").setAttribute("data-tooltip", guess_string);
+
     document.getElementById("edhrank").innerText = `EDHRec Sum: ${recrank}`;
-    console.log(edhrec_string);
+    document
+        .getElementById("edhrank")
+        .setAttribute("data-tooltip", edhrec_string);
+
     let formatelem = ``;
     let numformats = 0;
     for (const [key, value] of Object.entries(formats)) {
@@ -59,5 +63,7 @@ function calc_stat(boardstate) {
     }
     document.getElementById("formats").innerHTML =
         `Legal Formats: ${numformats}/${Object.keys(formats).length}`;
-    console.log(formats_string);
+    document
+        .getElementById("formats")
+        .setAttribute("data-tooltip", formats_string);
 }

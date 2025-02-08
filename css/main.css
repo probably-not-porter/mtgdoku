@@ -1,36 +1,44 @@
-*{
+* {
     font-family: monospace;
     text-align: center;
     color: white;
 }
-html{
+html {
     background-color: #111;
     position: absolute;
     width: 100vw;
     height: 100vh;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
-h2{
+h2 {
     margin: 0px;
     padding: 0 0;
     font-family: monospace;
 }
-button{
+button {
     color: white;
     background-color: black;
     border: 1px solid white;
     font-size: 12px;
     cursor: pointer;
 }
-button:hover{
-    background-color: rgba(255,255,255,0.3);
+button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
-#header{
+#header {
     border-bottom: 1px solid black;
     padding-bottom: 20px;
     margin-bottom: 10px;
 }
-#loader{
+#loader {
     display: none;
+}
+#footer {
+    font-size: 8px;
+    position: absolute;
+    bottom: 5px;
+    width: 90vw;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: left;
 }

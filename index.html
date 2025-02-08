@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="css/list.css">
         <link rel="stylesheet" href="css/puzzle.css">
         <link rel="stylesheet" href="css/stats.css">
+        <link rel="stylesheet" href="css/tooltip.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="icon" type="image/x-icon" href="img/favicon.png">
 
@@ -28,7 +29,9 @@
 
         </div>
         <div id="stats">
-            <span id="tries"></span>, <span id="edhrank"></span>, <span id="formats"></span>
+            <span class="tooltip--bottom" data-tooltip="Hello World!" id="tries"></span>,
+            <span class="tooltip--bottom" data-tooltip="Hello World!" id="edhrank"></span>,
+            <span class="tooltip--bottom" data-tooltip="Hello World!" id="formats"></span>
         </div>
         <div id="card_selector">
             <button onclick='close_popup()' id="close_card_selector">X</button>
@@ -39,7 +42,7 @@
             <br>
             <input oninput='auto(this.value)' list="suggestions" id='searchbar' placeholder="Search for a card..." type="text"></input>
             <datalist id="suggestions">
-                
+
             </datalist>
             <button onclick="check_answer()">Check Answer</button>
         </div>
@@ -47,15 +50,15 @@
         <div id='puzzle' class="grid-container">
             <div class="grid-item"></div>
             <div id='p1' class="container grid-p grid-item">loading...</div>
-            <div id='p2' class="container grid-p grid-item">loading...</div>  
+            <div id='p2' class="container grid-p grid-item">loading...</div>
             <div id='p3' class="container grid-p grid-item">loading...</div>
             <div id='p4' class="container grid-p grid-item">loading...</div>
-            <div id='a1' class="container grid-a grid-item">loading...</div>  
+            <div id='a1' class="container grid-a grid-item">loading...</div>
             <div id='a2' class="grid-a grid-item">loading...</div>
             <div id='a3' class="grid-a grid-item">loading...</div>
-            <div id='p5' class="grid-p grid-item">loading...</div>  
+            <div id='p5' class="grid-p grid-item">loading...</div>
             <div id='a4' class="grid-a grid-item">loading...</div>
-            <div id='a5' class="grid-a grid-item">loading...</div>  
+            <div id='a5' class="grid-a grid-item">loading...</div>
             <div id='a6' class="grid-a grid-item">loading...</div>
             <div id='p6' class="grid-p grid-item">loading...</div>
             <div id='a7' class="grid-a grid-item">loading...</div>
@@ -73,5 +76,6 @@
         <script src="js/test_questions.js"></script>
         <script src="js/loaders.js"></script>
         <script src="js/main.js"></script>
+        <div id="footer">The information presented on this site about Magic: The Gathering, both literal and graphical, is copyrighted by Wizards of the Coast. This website is not produced, endorsed, supported, or affiliated with Wizards of the Coast.</div>
     </body>
 </html>
