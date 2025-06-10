@@ -43,7 +43,8 @@ function calc_stat(boardstate) {
             }
         }
     }
-    document.getElementById("tries").innerText = `Guesses: ${boardstate.tries}`;
+    document.getElementById("tries").innerHTML = `
+      Tries: ${boardstate.tries} (<span style='color: green;'>${correct_tries}</span>/<span style='color: red;'>${boardstate.tries - correct_tries}</Span>)`;
     let guess_string = `${correct_tries} correct guesses
       ${boardstate.tries - correct_tries} incorrect guesses`;
     document.getElementById("tries").setAttribute("data-tooltip", guess_string);

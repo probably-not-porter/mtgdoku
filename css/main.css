@@ -36,9 +36,11 @@ button:hover {
 }
 #footer {
     font-size: 8px;
-    position: absolute;
     bottom: 5px;
-    width: 90vw;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+
     color: rgba(255, 255, 255, 0.4);
-    text-align: left;
+    text-align: center;
 }
