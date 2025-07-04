@@ -10,6 +10,11 @@ html {
     height: 100vh;
     overflow-x: hidden;
 }
+body{
+    margin:0;
+    position:relative;
+    min-height: 100vh;
+}
 h2 {
     margin: 0px;
     padding: 0 0;
@@ -33,14 +38,16 @@ button:hover {
 }
 #loader {
     display: none;
+    height: 85vh;
 }
 #footer {
-    font-size: 8px;
-    bottom: 5px;
+    position: absolute;
+    bottom: 0px;
     width: 80vw;
-    margin-left: 10vw;
-    margin-right: 10vw;
-
+    margin: 0 0;
+    padding: 10px 10vw;
+    font-size: 10px;
     color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.01);
     text-align: center;
 }
