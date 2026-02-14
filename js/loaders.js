@@ -3,7 +3,7 @@ function load_random(){
 }
 function load_daily(){
     let day = parseInt(new Date().toJSON().slice(0, 10).replaceAll("-",""));
-    window.location = window.location.href.split("?")[0] + "?" + day;
+    window.location = window.location.href.split("?")[0] + "?" + day + "0000";
 }
 function load_from_paste(){
     let input_seed = prompt("Enter a seed", "");

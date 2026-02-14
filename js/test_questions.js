@@ -1,6 +1,8 @@
 const elems = ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9"];
 
-async function test_questions(q) {
+const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+async function test_questions(q,a) {
     if (!q) return false;
 
     let loaded = 0;
@@ -15,28 +17,36 @@ async function test_questions(q) {
             let query = "";
 
             if (q1.length === 1) query += `c%3A${q1.toLowerCase()}`;
-            else if (q1.length < 4) query += `mv%3D${q1.replace("c", "")}`;
+            else if (q1[0] == "c") query += `mv%3D${q1.replace("c", "")}`;
             else query += `t%3A${q1.toLowerCase()}`;
 
             query += "+";
 
             if (q2.length === 1) query += `c%3A${q2.toLowerCase()}`;
-            else if (q2.length < 4) query += `mv%3D${q2.replace("c", "")}`;
+            else if (q2[0] == "c") query += `mv%3D${q2.replace("c", "")}`;
             else query += `t%3A${q2.toLowerCase()}`;
 
             const url = `https://api.scryfall.com/cards/search?order=cmc&q=${query}`;
+            console.info(url);
 
             // Create fetch Promise that updates progress
+            await delay(100);
             const fetchPromise = fetch(url)
                 .then((res) => res.json())
                 .then((data) => {
-                    if (!data || data.total_cards === undefined)
-                        throw new Error("Invalid data");
+                    if (!data || data.total_cards === undefined){
+                        document.getElementById("loader").innerHTML =
+                        `Checking solutions...<br><br>#${a} [${"▓".repeat(loaded)}X${"░".repeat(total-loaded-1)}]<br><br>(This can take a while)`;
+                        return false
+                    }
+                    else{
+                        document.getElementById("loader").innerHTML =
+                        `Checking solutions...<br><br>#${a} [${"▓".repeat(loaded)}${"░".repeat(total-loaded)}]<br><br>(This can take a while)`;
+                    }
 
                     // Update progress here
                     loaded++;
-                    document.getElementById("loader").innerHTML =
-                        `Checking puzzle (${((loaded / total) * 100).toFixed(0)}%)`;
+                    
 
                     return { x, y, q1, q2, data };
                 })

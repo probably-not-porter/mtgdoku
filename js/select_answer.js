@@ -8,7 +8,7 @@ function select(q1, q2, x, y){
 
     let hint = "(";
     if (q1.length == 1){ hint += `${parseColor(q1)}` }                  // header row if COLOR
-    else if (q1.length < 4){ hint += `${q1.replace("c","")}cmc` }      // header row if CMC
+    else if (q1[0] == "c"){ hint += `${q1.replace("c","")}cmc` }      // header row if CMC
     else { hint += `${q1.toLowerCase()}` }                              // header row if TYPE
     document.getElementById("card_selector_img_1").src = `img/${q1}.png`;
     if (q1 != q2){
@@ -17,7 +17,7 @@ function select(q1, q2, x, y){
         document.getElementById("card_selector_plus").style.display = "inline-block";
         hint += " and ";
         if (q2.length == 1){ hint += `${parseColor(q2)}` }                  // header row if COLOR
-        else if (q2.length < 4){ hint += `${q2.replace("c","")} CMC` }      // header row if CMC
+        else if (q2[0] == "c"){ hint += `${q2.replace("c","")} CMC` }      // header row if CMC
         else { hint += `${q2.toLowerCase()}` }                              // header row if TYPE
     }else{
         document.getElementById("card_selector_img_2").style.display = "none";

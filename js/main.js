@@ -8,9 +8,11 @@ async function load_board(){
         return null;
         
     }
-    while (await test_questions(question_key) == false){
+    counter = 1
+    while (await test_questions(question_key, counter) == false){
         question_key = await create_questions(seed);
         seed += 1;
+        counter += 1;
     }
     document.getElementById("puzzle").style.display = 'grid';
     document.getElementById("loader").style.display = "none";
