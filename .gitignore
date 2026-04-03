@@ -1,0 +1,4 @@
+.qodo
+*.db
+*.db-shm
+*.db-wal

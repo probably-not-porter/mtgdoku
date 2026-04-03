@@ -1,0 +1,91 @@
+* {
+    font-family: monospace;
+    color: white;
+    /* This prevents padding from pushing elements off-screen */
+    box-sizing: border-box; 
+}
+a {
+    color: greenyellow;
+    cursor: pointer;
+}
+a:hover {
+    color: green;
+    cursor: pointer;
+    text-decoration: underline;
+}
+html {
+    background-color: #111;
+    background-image: url("stars2.gif");
+    min-height: 100vh;
+}
+body {
+    margin: 0;
+    position: relative;
+    min-height: 100vh;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 100px;
+}
+h2, h3 {
+    margin: 0px;
+    padding: 0;
+    font-family: monospace;
+    text-align: center;
+}
+h3 {
+    border-bottom: 1px dashed white;
+}
+
+#content {
+    text-align: left;
+    width: 900px;
+    max-width: 95%; /* This ensures it shrinks on mobile */
+    /* REMOVED: min-width: 500px; */
+    margin: 0 auto;
+    
+    background-color: rgba(0,0,0, 0.5);
+    border: 1px dotted gray;
+    padding: 10px;
+    margin-bottom: 100px;
+}
+
+.nav_button {
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px;
+    display: inline-flex;    /* Keeps buttons in a row but allows flex centering inside */
+    align-items: center;     /* This centers the image and text vertically */
+    gap: 8px;                /* Adds a nice consistent space between the icon and text */
+    padding: 10px 15px;      /* Adjust as needed for button size */
+    text-decoration: none;   /* Removes the default underline */
+    
+    /* Optional: vertical alignment for the buttons themselves */
+    vertical-align: middle;
+    margin-bottom: 5px;    /* Prevents buttons touching when they wrap */
+}
+.nav_button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+nav {
+    border-bottom: 1px solid #333;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(0,0,0, 0.5);
+    
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%; /* Ensures it spans the whole screen */
+    font-size: 10px;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0,0,0, 0.9);
+    padding: 10px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>{% block title %}MTGDoku{% endblock %}</title>
+            <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.png') }}">
+            {% block styles %}
+                <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css' ) }}">
+            {% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        <nav>
+            <h2>MTGdoku</h2>
+            <div class="nav-links">
+                <a class='nav_button' href="{{ url_for('index') }}"><img width=20px src="{{ url_for('static', filename='building4.gif' ) }}"/> Home</a>
+                <a class='nav_button' href="{{ url_for('about') }}"><img width=20px src="{{ url_for('static', filename='book6.gif' ) }}"/> About</a>
+                <a class='nav_button' href="{{ url_for('daily') }}"><img width=20px src="{{ url_for('static', filename='handheld1.gif' ) }}"/> Daily Puzzle</a>
+                <a class='nav_button' href="{{ url_for('random') }}"><img width=20px src="{{ url_for('static', filename='star111.gif' ) }}"/> Random Puzzle</a>
+            </div>
+        </nav>
+        
+        <main id="content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+        {% block footer %}
+            <small>
+                <p>
+                    Wizards of the Coast, Magic: The Gathering, and their logos are trademarks
+                    of Wizards of the Coast LLC in the United States and other countries.
+                    © 1993-2026 Wizards. All Rights Reserved.
+
+                    MTGDoku is not affiliated with, endorsed, sponsored, or specifically
+                    approved by Wizards of the Coast LLC. MTGDoku may use the trademarks
+                    and other intellectual property of Wizards of the Coast LLC, which is
+                    permitted under Wizards' Fan Site Policy. MAGIC: THE GATHERING® is a
+                    trademark of Wizards of the Coast. For more information about Wizards of
+                    the Coast or any of Wizards' trademarks or other intellectual property,
+                    please visit their website at <a href="https://company.wizards.com/">https://company.wizards.com/</a>.
+                </p>
+                Website written by <a href="https://plib.dev" title="Porter Libby">Porter Libby</a> &copy; 2026 /
+                <a href="https://github.com/probably-not-porter/mtgdoku">Github</a>
+            </small>
+        {% endblock %}
+
+        </footer> 
+    </body>
+</html>

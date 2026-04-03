@@ -7,8 +7,6 @@ const power = ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10'
 const toughness = ['t0', 't1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10'];
 const types = ["Land", "Creature", "Artifact", "Enchantment", "Planeswalker", "Instant", "Sorcery"];
 const subtypes = [
-    "Adventure", "Arcane", "Chorus", "Lesson", "Omen", "Trap",      // Spell Types
-    "Aura", "Background", "Cartouche", "Case", "Class", "Curse", "Room", "Saga", "Shrine",      // Enchantment Types
     "Advisor", "Aetherborn", "Alien", "Ally", "Angel", "Antelope", "Ape", "Archer", "Archon",           // CREATURE TYPES
     "Armadillo", "Army", "Artificer", "Assassin", "Assembly-Worker", "Astartes", "Atog", "Aurochs", 
     "Avatar", "Azra", "Badger", "Balloon", "Barbarian", "Bard", "Basilisk", "Bat", "Bear", "Beast", 

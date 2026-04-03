@@ -1,0 +1,85 @@
+#puzzle {
+    margin: 10px auto; /* Centered */
+    border: 3px solid rgba(255,255,255,0.1);
+    margin-bottom: 5vh;
+    width: 100%;       /* Fill the content area */
+    max-width: 500px;  /* Keep it a reasonable size on desktop */
+}
+#searchbar{
+    background: none;
+    border: 1px solid white;
+    padding: 4px;
+    width: calc(100% - 106px);
+    text-align: center;
+}
+.img-container{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.icon{
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+}
+.label {
+    position: absolute;
+    width: 90%; /* Increased from 50% to prevent text wrapping too early */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Changed from black if background is dark */
+    font-size: 12px; /* Fixed size is more reliable for tiny cells */
+    text-align: center;
+    padding: 2px;
+    font-weight: 900;
+    text-shadow: 1px 1px 2px black; /* Helps readability over card art */
+}
+.card-img{
+    float:left;
+    object-fit: cover;
+    width: 70%;
+    height: 100%;
+    z-index: 0;
+}
+.cardname{
+    background: rgba(0, 0, 0, 0.4);
+    font-size: 10px;
+}
+.incorrect {
+    position: relative; /* Ensure this works well with the box-shadow */
+    animation: fadeOutIncorrect 3s forwards;
+}
+.correct {
+    position: relative; /* Ensure this works well with the box-shadow */
+    animation: fadeOutCorrect 3s forwards;
+}
+.grid-container {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 2px; /* Small gap looks cleaner than padding */
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Forces it to stay a perfect square */
+}
+.grid-item {
+    font-size: 10px;
+    text-align: center;
+    width: 100%;  /* Fills 1/4 of the grid */
+    height: 100%; /* Keeps it square because of aspect-ratio above */
+    background-color: rgba(0,0,0, 0.8);
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 1px solid rgba(255,255,255,0.1); /* Optional: defines the cells */
+}
+.grid-item .icon {
+    image-rendering: pixelated;
+    width: 80%; /* Slightly smaller to prevent touching edges */
+    height: auto;
+    aspect-ratio: 1/1;
+    margin: 10%;
+}
+.grid-a{
+    font-size: 14px;
+}

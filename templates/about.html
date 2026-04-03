@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br><br><br>
+<h3>What is this and how do I use it?</h3>
+<p>
+    This is a game for guessing Magic the Gathering cards. The idea is to come up with a set of 
+    nine cards that match the categories which intersect on each square. The idea is to think of
+    cards you know (or look them up if you like), and test your knowledge of the game.
+</p>
+<p>
+    For example, I might have a board with <img style='width: 12px;' src="https://svgs.scryfall.io/card-symbols/3.svg" /> 
+    (3 <a href="https://mtg.wiki/page/Mana_value">converted mana cost)</a> in the top row and <img style='width: 12px;' src="https://svgs.scryfall.io/card-symbols/G.svg" /> 
+    (Green) in the left column. Where those two categories intersect, I would try to come up with 
+    a card that is both 3 mana to cast <u>and</u> green. A possible answer here could be <a href="https://scryfall.com/card/mir/208/brushwagg">Brushwagg</a>, 
+    which meets both conditions.
+</p>
+<p>The website uses a local storage cookie in your browser to keep track of your puzzles, so you 
+    can return to them at any time, and see the history of puzzles that you have worked on.
+</p>
+<br><br>
+
+
+<h3>History</h3>
+<p>
+    The inspiration for this game comes from <a href="https://pokedoku.com/">pokedoku.com/</a>, 
+    which creates similar puzzles for Pokemon content. I wanted to see if I could make puzzles 
+    like thatfor Magic the Gathering cards. My secondary goal was to build something which did not 
+    require manual content creation (automated generation of puzzles).
+</p>
+<p>
+    My first version of this website was much more naive. I wrote an [inefficient] algorithm that 
+    came up with seeded-random combinations and tested against Scryfall's API to see if that 
+    combination was possible. If it wasn't, the process started over again. If it was, the puzzle 
+    was complete. This allowed for deterministic puzzles that could be accessed by seed (and 
+    therefore by URL or pattern), but it also created some really long load times. Sometimes the 
+    algorithm would need to go through several dozen puzzles before finding one that worked, 
+    querying Scryfall each time (~1 second to pull all the results). Once I added subtypes, it 
+    really made this problem even worse, and I started to think about other solutions.
+</p>
+<p>
+    Eventually, I came up with the idea of using a separate script to work out all the possible 
+    combinations beforehand, and storing them in a database. Downloading scryfall bulk data and 
+    processing it in python was much faster than repeated API calls, so working through millions 
+    of possible boards could be done here. I used a SQLite table to store all the possible tables, 
+    and Flask to support a simple API of my own for calling them to the front-end.
+</p>
+<br><br>
+
+
+<h3>Technical Bits</h3>
+<br>
+<div style="text-align: center;">
+    <img style='max-width: 100%;width:500px;-webkit-transform: scaleX(-1);transform: scaleX(-1);' 
+    src="https://cards.scryfall.io/art_crop/front/8/b/8b75bef5-a039-4edf-8e43-56b8d089605e.jpg"/>
+    <br>
+    <small style="color: rgba(255,255,255,0.5)">Me thinking of ideas (pictured left) and me trying to execute those ideas (pictured right)</small>
+</div>
+<br>
+<p>The initial version of the website just used CMC, color, and spell types (Artifact, Creature, 
+    Instant, etc) as options for categories, but this made for a lot of overlap in puzzles, and 
+    too many options. I later added creature subtypes, which made for some interesting new 
+    puzzles, but also some very obscure creature types made it more difficult to build effective 
+    boards. The latest version of the puzzle database (as of Spring 2026) includes all creature 
+    types that are represented on more than 100 cards. 
+</p>
+<p>
+    Here's a complete list of the current options for categories:
+    <ul>
+        <li><u>Colors</u>: W, U, B, R, G</li>
+        <li><u>Types</u>: Creature, Artifact, Enchantment, Planeswalker, Instant, Sorcery</li>
+        <li><u>CMC</u>: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</li>
+        <li><u>Subtypes</u>: Human, Warrior, Wizard, Soldier, Spirit, Elf, Elemental, Cleric, Zombie, 
+            Rogue, Goblin, Beast, Knight, Phyrexian, Shaman, Bird, Dragon, Vampire, Druid, Cat, 
+            Horror, Merfolk, Insect, Angel, Scout, Artificer, Construct, Giant, Dinosaur, Demon, 
+            Ally, Noble, Warlock, Eldrazi, Mutant, Lizard, Snake, Pirate, Faerie, Monk, 
+            Shapeshifter, Golem, Advisor, Wall, Avatar, Assassin, Dog, Berserker, Dwarf, Spider, 
+            Ogre, Ninja, Rat, Treefolk, Wurm, Robot, Sliver, Minotaur, Archer, Orc, Illusion, 
+            Citizen, Drake, Plant, Nightmare, Wolf</li>
+    </ul>
+</p>
+<p>The database of puzzles was created separately, using some scripts from my 
+    <a href="https://github.com/probably-not-porter/mtg-data-science">mtg-data-science</a> 
+    repository. The process looks something like this:
+    <ol>
+        <li>Download the bulk data from <a href="https://scryfall.com/docs/api/bulk-data">Scryfall</a>.</li>
+        <li>Read that data into a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">Pandas dataframe</a>.</li>
+        <li>Create a list of possible combinations of questions (three rows and three columns).</li>
+        <li>Eleminate boards which are impossible (there are no cards that have more than one CMC).</li>
+        <li>Cycle through the remaining boards and check the dataframe to see if they are possible 
+            (regularly storing possible boards in SQLite for memory efficiency).</li>
+    </ol>
+    Each board fetched from the database looks something like this:<br>
+<div style="background: rgba(0,0,0,0.5);color:gray; white-space: pre;">{
+    'seed': 2026328,
+    'rows': [
+        {'cat': 'color', 'value': 'B'}, 
+        {'cat': 'type', 'value': 'Land'}, 
+        {'cat': 'type', 'value': 'Planeswalker'}
+    ],
+    'cols': [
+        {'cat': 'color', 'value': 'G'}, 
+        {'cat': 'type', 'value': 'Artifact'}, 
+        {'cat': 'cmc', 'value': '2'}
+    ]
+}</div>
+</p>
+<br><br>
+
+{% endblock %}

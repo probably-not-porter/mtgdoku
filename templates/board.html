@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='puzzle.css' ) }}">
+<script src="{{ url_for('static', filename='board.js' ) }}" ></script>
+<div style='display:none' id="answer-input">
+    <a class='nav_button' >< Back</a>
+    <br><br>
+    <input oninput='auto(this.value)' list="suggestions" id='searchbar' placeholder="Search for a card..." type="text"></input>
+    <datalist id="suggestions">
+    </datalist>
+    <a class='nav_button' onclick="check_answer()">Check Answer</a>
+</div>
+<div  id='puzzle' class="grid-container">
+    <div class="grid-item"></div>
+    {% for grid_square in [board.rows[0], board.rows[1], board.rows[2], board.cols[0], 1, 2, 3, board.cols[1], 4, 5, 6, board.cols[2], 7, 8, 9] %}
+    {% if grid_square is not number %}
+    <div class="container grid-p grid-item">
+        <div class='img-container'>
+            {% if grid_square.cat == "type" %}
+            <img class='icon' 
+            src="{{ url_for('static', filename=grid_square.value + '.png' ) }}" />
+
+            {% else %}
+            <img class='icon' 
+            src="{{ url_for('static', filename='tile.png' ) }}" />
+
+            <div class='label' >
+                {% if grid_square.cat in ["color", "cmc"] %}
+                    <img style="width:50%" src="https://svgs.scryfall.io/card-symbols/{{ grid_square.value }}.svg" />
+                {% else %}
+                    {{ grid_square.value }}
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <div id=a{{grid_square}} 
+        data-1="{{ board.cols[(grid_square/3)|round(0, 'ceil')|int - 1] }}" 
+        data-2="{{ board.rows[grid_square % 3 - 1] }}" 
+        class="container grid-a grid-item"><br>
+        Loading...
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+<script> on_board_load(); </script>
+{% endblock %}
