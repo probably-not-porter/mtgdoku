@@ -5,9 +5,9 @@
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>{% block title %}MTGDoku{% endblock %}</title>
-            <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.png') }}">
+            <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
             {% block styles %}
-                <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css' ) }}">
+                <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css' ) }}">
             {% endblock %}
         {% endblock %}
     </head>
@@ -15,10 +15,10 @@
         <nav>
             <h2>MTGdoku</h2>
             <div class="nav-links">
-                <a class='nav_button' href="{{ url_for('index') }}"><img width=20px src="{{ url_for('static', filename='building4.gif' ) }}"/> Home</a>
-                <a class='nav_button' href="{{ url_for('about') }}"><img width=20px src="{{ url_for('static', filename='book6.gif' ) }}"/> About</a>
-                <a class='nav_button' href="{{ url_for('daily') }}"><img width=20px src="{{ url_for('static', filename='handheld1.gif' ) }}"/> Daily Puzzle</a>
-                <a class='nav_button' href="{{ url_for('random') }}"><img width=20px src="{{ url_for('static', filename='star111.gif' ) }}"/> Random Puzzle</a>
+                <a class='nav_button' href="{{ url_for('index') }}"><img width=20px src="{{ url_for('static', filename='gif/building4.gif' ) }}"/> Home</a>
+                <a class='nav_button' href="{{ url_for('about') }}"><img width=20px src="{{ url_for('static', filename='gif/book6.gif' ) }}"/> About</a>
+                <a class='nav_button' href="{{ url_for('daily') }}"><img width=20px src="{{ url_for('static', filename='gif/handheld1.gif' ) }}"/> Daily Puzzle</a>
+                <a class='nav_button' href="{{ url_for('random') }}"><img width=20px src="{{ url_for('static', filename='gif/star111.gif' ) }}"/> Random Puzzle</a>
             </div>
         </nav>
         

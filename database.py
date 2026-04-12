@@ -2,7 +2,7 @@ import sqlite3
 import random as rand
 import os
 
-DB_PATH = "mtg_relational_grids.db"
+DB_PATH = "mtg_relational_grids_2.db"
 _conn = None
 
 def get_connection():

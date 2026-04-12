@@ -20,13 +20,13 @@ function load_all_boards(){
                 new_html +=`
                 <a href="/random?id=${key}">
                 <span class="list-color-${correct}">Daily Puzzle ${day} (${tries})</span>
-                </a>`
+                </a><br>`
             }
             else{    // random puzzle
                 new_html +=`
                 <a href="/random?id=${key}">
                 <span class="list-color-${correct}">Random Puzzle #${key} (${tries})</span>
-                </a>`
+                </a><br>`
             }
         }
         

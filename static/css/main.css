@@ -15,7 +15,7 @@ a:hover {
 }
 html {
     background-color: #111;
-    background-image: url("stars2.gif");
+    background-image: url("/static/gif/stars2.gif");
     min-height: 100vh;
 }
 body {

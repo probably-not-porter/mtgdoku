@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='puzzle.css' ) }}">
-<script src="{{ url_for('static', filename='board.js' ) }}" ></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/puzzle.css' ) }}">
+<script src="{{ url_for('static', filename='js/board.js' ) }}" ></script>
 <div style='display:none' id="answer-input">
     <button onclick='exist_answer_screen()' class='nav_button' >< Back to Board</button>
     <button style='float:right;' class='nav_button' onclick="return_to_puzzle()">Submit Answer ></button>
@@ -27,11 +27,11 @@
         <div class='img-container'>
             {% if grid_square.cat == "type" %}
             <img class='icon' 
-            src="{{ url_for('static', filename=grid_square.value + '.png' ) }}" />
+            src="{{ url_for('static', filename='img/' +grid_square.value + '.png' ) }}" />
 
             {% else %}
             <img class='icon' 
-            src="{{ url_for('static', filename='tile.png' ) }}" />
+            src="{{ url_for('static', filename='img/tile.png' ) }}" />
 
             <div class='label' >
                 {% if grid_square.cat in ["color", "cmc"] %}

@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-<script src="{{ url_for('static', filename='list.js' ) }}" ></script>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='list.css' ) }}">
+<script src="{{ url_for('static', filename='js/list.js' ) }}" ></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/list.css' ) }}">
 
 <h2>Magic the Gathering Sudoku Puzzles</h2>
 <br>
-<h3>
+<h2>
     <img style='width: 24px;' src="https://svgs.scryfall.io/card-symbols/W.svg" /> 
     <img style='width: 24px;' src="https://svgs.scryfall.io/card-symbols/U.svg" /> 
     <img style='width: 24px;' src="https://svgs.scryfall.io/card-symbols/B.svg" /> 
     <img style='width: 24px;' src="https://svgs.scryfall.io/card-symbols/R.svg" /> 
     <img style='width: 24px;' src="https://svgs.scryfall.io/card-symbols/G.svg" /> 
     <br><br>
-</h3>
+</h2>
 <br><br>
+<h3>Puzzle History</h3>
+<br>
 <div id="list">
     <div style="text-align: center;">
         <img style='max-width: 100%;width:200px;' 
@@ -24,6 +26,13 @@
         <small style="color: rgba(255,255,255,0.5)">(Better start one, just to be safe)</small>
     </div>
 </div>
+<br><br>
+<h3>Other Tools</h3>
+<br>
+<button class='nav_button' >Reset Saved Puzzles</button>
+<button class='nav_button' >Export Save</button>
+<button class='nav_button' >Import Save</button>
+<button class='nav_button' >Report an Issue</button>
 
 <script> load_all_boards(); </script>
 {% endblock %}
