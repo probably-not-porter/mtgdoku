@@ -1,6 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>
-    List goes here
-</p>
+<script src="{{ url_for('static', filename='list.js' ) }}" ></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='list.css' ) }}">
+
+<h2>Magic the Gathering Sudoku Puzzles</h2>
+<br>
+<h3>
+    <img style='width: 24px;' src="https://svgs.scryfall.io/card-symbols/W.svg" /> 
+    <img style='width: 24px;' src="https://svgs.scryfall.io/card-symbols/U.svg" /> 
+    <img style='width: 24px;' src="https://svgs.scryfall.io/card-symbols/B.svg" /> 
+    <img style='width: 24px;' src="https://svgs.scryfall.io/card-symbols/R.svg" /> 
+    <img style='width: 24px;' src="https://svgs.scryfall.io/card-symbols/G.svg" /> 
+    <br><br>
+</h3>
+<br><br>
+<div id="list">
+    <div style="text-align: center;">
+        <img style='max-width: 100%;width:200px;' 
+        src="https://cards.scryfall.io/art_crop/front/4/a/4a639687-d9e3-46a8-bc9f-6ca3912c46ab.jpg"/>
+        <br>
+        <small style="color: rgba(255,255,255,0.5)">No Puzzles to be found</small>
+        <br>
+        <small style="color: rgba(255,255,255,0.5)">(Better start one, just to be safe)</small>
+    </div>
+</div>
+
+<script> load_all_boards(); </script>
 {% endblock %}

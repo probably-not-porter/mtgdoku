@@ -3,13 +3,14 @@
     border: 3px solid rgba(255,255,255,0.1);
     margin-bottom: 5vh;
     width: 100%;       /* Fill the content area */
-    max-width: 500px;  /* Keep it a reasonable size on desktop */
+    max-width: 75vh;  /* Keep it a reasonable size on desktop */
+    min-width: 300px;
 }
 #searchbar{
     background: none;
     border: 1px solid white;
-    padding: 4px;
-    width: calc(100% - 106px);
+    padding: 9px 15px;
+    width: 100%;
     text-align: center;
 }
 .img-container{
@@ -61,6 +62,20 @@
     gap: 2px; /* Small gap looks cleaner than padding */
     width: 100%;
     aspect-ratio: 1 / 1; /* Forces it to stay a perfect square */
+}
+.grid-container2 {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 4 equal columns */
+    gap: 2px; /* Small gap looks cleaner than padding */
+    width: 200px;
+    max-width: 100%;
+    aspect-ratio: 2 / 1; /* Forces it to stay a perfect square */
+}
+#question{
+    width: 100%;
+    text-align: center;
+    display:block;
 }
 .grid-item {
     font-size: 10px;

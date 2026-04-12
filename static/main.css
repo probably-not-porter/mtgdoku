@@ -46,7 +46,7 @@ h3 {
     background-color: rgba(0,0,0, 0.5);
     border: 1px dotted gray;
     padding: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .nav_button {
@@ -69,6 +69,8 @@ h3 {
 }
 .nav_button:hover {
     background-color: rgba(255, 255, 255, 0.3);
+    color: green;
+    text-decoration: underline;
 }
 
 nav {

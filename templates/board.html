@@ -3,12 +3,21 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='puzzle.css' ) }}">
 <script src="{{ url_for('static', filename='board.js' ) }}" ></script>
 <div style='display:none' id="answer-input">
-    <a class='nav_button' >< Back</a>
+    <button onclick='exist_answer_screen()' class='nav_button' >< Back to Board</button>
+    <button style='float:right;' class='nav_button' onclick="return_to_puzzle()">Submit Answer ></button>
+    <br><br>
+    <div id='q1q2_imgs' class="grid-container2"></div>
+    <br><br>
+    <span id="question"></span>
     <br><br>
     <input oninput='auto(this.value)' list="suggestions" id='searchbar' placeholder="Search for a card..." type="text"></input>
     <datalist id="suggestions">
     </datalist>
-    <a class='nav_button' onclick="check_answer()">Check Answer</a>
+</div>
+<div id="stats">
+    <span id="tries"></span>,
+    <span id="edhrank"></span>,
+    <span id="formats"></span>
 </div>
 <div  id='puzzle' class="grid-container">
     <div class="grid-item"></div>
@@ -38,11 +47,14 @@
     <div id=a{{grid_square}} 
         data-1="{{ board.cols[(grid_square/3)|round(0, 'ceil')|int - 1] }}" 
         data-2="{{ board.rows[grid_square % 3 - 1] }}" 
+        data-board="{{ board.seed }}"
         class="container grid-a grid-item"><br>
         Loading...
     </div>
     {% endif %}
     {% endfor %}
 </div>
-<script> on_board_load(); </script>
+<br><br>
+
+<script> on_board_load("{{ board.seed }}"); </script>
 {% endblock %}
