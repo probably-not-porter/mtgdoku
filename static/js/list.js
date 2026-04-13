@@ -33,8 +33,66 @@ function load_all_boards(){
 
     }
     if (new_html != ""){
-        list_el.style.display = "block";
+        console.log("replace html")
         list_el.innerHTML = new_html;
     }
     
+}
+
+function clear_storage(){
+    if (window.confirm("Are you sure you want to delete your saved games? (Only affects this device)")) {
+        console.log("Deleting local storage...");
+        localStorage.clear();
+        location.reload();
+    } else {
+        console.log("Nothing deleted.");
+    }
+}
+
+function exportLocalStorage() {
+  const data = JSON.stringify(localStorage, null, 2);
+  const blob = new Blob([data], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `mtgdoku-save-${new Date().toISOString().slice(0,10)}.json`;
+  link.click();
+  
+  URL.revokeObjectURL(url);
+}
+
+function importLocalStorage() {
+    if (window.confirm("This will replace any currently saved games, are you sure you want to continue? (Only affects this device)")) {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+
+        input.onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+            try {
+                const data = JSON.parse(event.target.result);
+                localStorage.clear();
+
+                Object.keys(data).forEach(key => {
+                localStorage.setItem(key, data[key]);
+                });
+
+                console.log("Import Successful");
+                location.reload(); 
+            } catch (err) {
+                alert("Error: Invalid JSON file.");
+            }
+            };
+            reader.readAsText(file);
+        };
+        input.click();
+    } else {
+        console.log("Nothing deleted.");
+    }
+
 }

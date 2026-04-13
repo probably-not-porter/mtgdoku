@@ -29,10 +29,10 @@
 <br><br>
 <h3>Other Tools</h3>
 <br>
-<button class='nav_button' >Reset Saved Puzzles</button>
-<button class='nav_button' >Export Save</button>
-<button class='nav_button' >Import Save</button>
-<button class='nav_button' >Report an Issue</button>
+<button onclick='clear_storage()' class='nav_button' ><img width=20px src="{{ url_for('static', filename='gif/recycle.gif' ) }}"/> Reset Saved Puzzles</button>
+<button onclick='exportLocalStorage()' class='nav_button' ><img width=20px src="{{ url_for('static', filename='gif/disc.gif' ) }}"/> Export Save</button>
+<button onclick='importLocalStorage()' class='nav_button' ><img width=20px src="{{ url_for('static', filename='gif/computer10.gif' ) }}"/> Import Save</button>
+<button onclick='window.open("https://github.com/probably-not-porter/mtgdoku/issues")' class='nav_button' ><img width=20px src="{{ url_for('static', filename='gif/question.gif' ) }}"/> Report an Issue</button>
 
 <script> load_all_boards(); </script>
 {% endblock %}

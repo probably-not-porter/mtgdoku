@@ -2,6 +2,13 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/puzzle.css' ) }}">
 <script src="{{ url_for('static', filename='js/board.js' ) }}" ></script>
+<div id="stats">
+    <span id="stats_short"></span> 
+    <a id='stat_button' href="javascript:void(0)" onclick="toggle_stats()">[MORE STATS]</a>
+    <br>
+    <div id="stats_full"></div>
+</div>
+<br>
 <div style='display:none' id="answer-input">
     <button onclick='exist_answer_screen()' class='nav_button' >< Back to Board</button>
     <button style='float:right;' class='nav_button' onclick="return_to_puzzle()">Submit Answer ></button>
@@ -14,11 +21,7 @@
     <datalist id="suggestions">
     </datalist>
 </div>
-<div id="stats">
-    <span id="tries"></span>,
-    <span id="edhrank"></span>,
-    <span id="formats"></span>
-</div>
+
 <div  id='puzzle' class="grid-container">
     <div class="grid-item"></div>
     {% for grid_square in [board.rows[0], board.rows[1], board.rows[2], board.cols[0], 1, 2, 3, board.cols[1], 4, 5, 6, board.cols[2], 7, 8, 9] %}
