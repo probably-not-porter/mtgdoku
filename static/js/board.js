@@ -19,7 +19,13 @@ async function on_board_load(id) {
             const count = data.total_cards;
             elem.innerHTML = `
                 <br>${count ?? 0} card(s)<br><br>
-                <a onclick="answer('${q1.cat}', '${q1.value}','${q2.cat}', '${q2.value}', '${elem.id}')">Answer</a>
+                <a onclick="answer(
+                    '${q1.cat}', 
+                    '${q1.value}',
+                    '${q2.cat}', 
+                    '${q2.value}', 
+                    '${elem.id}')"
+                >Answer</a>
             `;
         }
         
@@ -137,7 +143,9 @@ function answer(q1_cat, q1_value, q2_cat, q2_value,id){
         </div>`;
     }
     document.getElementById("question").innerHTML = `
-    What cards are both <strong><u>${q1_value}</u></strong> (${q1_cat}) and <strong><u>${q2_value}</u></strong> (${q2_cat})?`
+    What cards are both <strong><u>${q1_value}</u></strong> 
+    (${q1_cat}) and 
+    <strong><u>${q2_value}</u></strong> (${q2_cat})?`
 }
 function exist_answer_screen(){
     document.getElementById("answer-input").style.display = "none";
@@ -171,6 +179,7 @@ async function return_to_puzzle(){
                     let board = load_board(id);
                     board.tries += 1;
                     save_board(id,board);
+                    banner("Not quite, try again.", "red");
                     return 0;
                 }
             }
@@ -180,6 +189,7 @@ async function return_to_puzzle(){
                     let board = load_board(id);
                     board.tries += 1;
                     save_board(id,board);
+                    banner("Not quite, try again.", "red");
                     return 0;
                 }
             }
@@ -189,15 +199,21 @@ async function return_to_puzzle(){
                     let board = load_board(id);
                     board.tries += 1;
                     save_board(id,board);
+                    banner("Not quite, try again.", "red");
                     return 0;
                 }
             }
         }
         let board = load_board(id);
         board[search_el.dataset.q_target] = data;
+        document.getElementById(search_el.dataset.q_target).innerHTML = `
+            <div style='width:100%; height: 100%; background-size: cover; background-image: url(${board[search_el.dataset.q_target].image_uris.art_crop})'>
+            </div>
+        `;
         board.tries += 1;
         save_board(id,board);
-        
+        banner("Success!", "green");
+        return 1
 
     }else{
         // Allow a retry for typos
@@ -213,6 +229,16 @@ async function auto(v){
     for (const name of data.data) {
         suggestion_el.innerHTML += `<option value="${name}">${name}</option>`;
     }
+}
+
+async function banner(v,c){
+    const banner_elem = document.getElementById("response-banner");
+    banner_elem.style.display = "block";
+    banner_elem.innerHTML = v;
+    banner_elem.style.backgroundColor = c;
+    setTimeout(function() {
+        banner_elem.style.display = "none";
+    }, 500);
 }
 
 function save_board(id,board){

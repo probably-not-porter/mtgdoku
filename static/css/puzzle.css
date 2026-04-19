@@ -138,3 +138,14 @@ table, th, td {
 table{
     width: 100%;
 }
+#response-banner{
+    background-color: red;
+    display: none;
+    position: fixed;
+    padding:20px;
+    text-align: center;
+    z-index:10;
+    left: 0px;
+    right: 0px;
+    top: 50vh;
+}
