@@ -5,7 +5,14 @@
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>{% block title %}MTGDoku{% endblock %}</title>
+            <meta name="description" content="{% block description %}Sudoku style MtG Puzzles{% endblock %}">
+            <link rel="canonical" href="{{ request.base_url }}">
             <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+            <meta property="og:title" content="{% block og_title %}MTGDoku{% endblock %}">
+            <meta property="og:description" content="{% block og_description %}Sudoku style MtG Puzzles{% endblock %}">
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="{{ request.base_url }}">
+
             {% block styles %}
                 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css' ) }}">
             {% endblock %}
