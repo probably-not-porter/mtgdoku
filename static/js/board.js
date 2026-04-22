@@ -7,10 +7,7 @@ async function on_board_load(id) {
     
     const fetchPromises = Array.from(answer_elems).map(async (elem, idx) => {
         if (board[elem.id] != null){
-            elem.innerHTML = `
-                <div style='width:100%; height: 100%; background-size: cover; background-image: url(${board[elem.id].image_uris.art_crop})'>
-                </div>
-            `;
+            elem.innerHTML =  await create_image(board[elem.id]);
         }else{
             await new Promise(r => setTimeout(r, idx * 150)); 
             let q1 = toJSON(elem.getAttribute('data-1'));
@@ -206,10 +203,8 @@ async function return_to_puzzle(){
         }
         let board = load_board(id);
         board[search_el.dataset.q_target] = data;
-        document.getElementById(search_el.dataset.q_target).innerHTML = `
-            <div style='width:100%; height: 100%; background-size: cover; background-image: url(${board[search_el.dataset.q_target].image_uris.art_crop})'>
-            </div>
-        `;
+        document.getElementById(search_el.dataset.q_target).innerHTML = await create_image(board[search_el.dataset.q_target]);
+
         board.tries += 1;
         save_board(id,board);
         banner("Success!", "green");
@@ -219,6 +214,29 @@ async function return_to_puzzle(){
         // Allow a retry for typos
         alert("That's not a MtG card...");
     }
+}
+
+async function create_image(board_item){
+    let html = ""
+    if (Object.hasOwn(board_item, 'image_uris')){
+        html = `
+            <div style='width:100%; 
+            height: 100%; 
+            background-size: cover; 
+            background-image: url(${board_item.image_uris.art_crop})'>
+            </div>
+        `;
+    }else{ // MDFC clause
+        html = `
+            <div style='width:100%; 
+            height: 100%; 
+            background-size: cover; 
+            background-image: url(${board_item.card_faces[0].image_uris.art_crop})'>
+            </div>
+        `;
+    }
+    
+    return html
 }
 
 async function auto(v){
