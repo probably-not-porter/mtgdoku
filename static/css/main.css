@@ -91,3 +91,12 @@ footer {
     background-color: rgba(0,0,0, 0.9);
     padding: 10px;
 }
+#changelog{
+    max-height: 300px;
+    overflow-y: scroll;
+}
+#changelog p{
+    border: 1px solid gray;
+    margin: 5px 40px;
+    padding: 5px;
+}
